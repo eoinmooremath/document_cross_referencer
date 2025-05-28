@@ -1,0 +1,9 @@
+# OpenAI client library (used to call GPT models)
+openai>=1.8.0
+
+# Async HTTP client (used internally by OpenAI)
+httpx>=0.23.0
+
+# Data validation (for schemas if used, optional)
+pydantic>=2.0
+

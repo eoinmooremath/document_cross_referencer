@@ -1,0 +1,19 @@
+# Byte‑compiled / optimized files
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual environments
+venv/
+.env
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Output directories
+out/
+examples/sample_output/
+
+# IDE settings
+.vscode/
+.i
