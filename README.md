@@ -13,10 +13,8 @@ A Python package for:
 - **Reference Analysis**: Identify and organize all in‑text references by section using RAG.
 
 ## Concept
-- We use recursive RAG calls to generate a table of contents of the text, one layer at a time.  With this rich piece of information, we can, with some effort, extract all the sections we want from the text.
+- We use recursive RAG calls to generate a table of contents of the text, one layer at a time.  With this rich piece of information, we can, with some effort, extract all the sections we want from the text. To do the recursive RAG calls, for each call we submit the entire document to the LLM.  Newer Gemini and OpenAi models have token windows of 1,000,000+ tokens, or about 2500 pages, so the entire document should fit. Usually there are between 5-7 calls to the LLM in total.  If you have 10 calls of a 200 page document context, that is roughly 2000 pages, or 800,000 tokens processed. gpt-4.1-mini costs $0.40 per million tokens currently.
 
-```bash
-pip install -r requirements.txt
-```
-
-## Quick Start
+## Example
+- The example file included is text of the EU General Data Protection Regulation, found here:
+  https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32016R0679#enc_1
