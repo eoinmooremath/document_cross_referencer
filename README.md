@@ -17,4 +17,4 @@ A Python package for:
 
 ## Example
 - The example file included is text of the EU General Data Protection Regulation, found here:
-  https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32016R0679#enc_1
+  https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32016R0679
