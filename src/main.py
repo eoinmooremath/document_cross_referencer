@@ -1,4 +1,3 @@
-# src/main.py
 """
 Main entry point for document cross-reference analysis.
 """
