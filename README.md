@@ -1,4 +1,4 @@
-# Document Cross-Reference
+# Document Cross-Referencer
 
 A Python package for:
 
@@ -12,7 +12,8 @@ A Python package for:
 - **Section Tagging**: Embed markers into raw text for downstream processing using regex.
 - **Reference Analysis**: Identify and organize all in‑text references by section using RAG.
 
-## Installation
+## Concept
+- We use recursive RAG calls to generate a table of contents of the text, one layer at a time.  With this rich piece of information, we can, with some effort, extract all the sections we want from the text.
 
 ```bash
 pip install -r requirements.txt
