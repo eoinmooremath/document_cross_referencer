@@ -1,6 +1,4 @@
 """
-examples/run_analysis.py
-------------------------
 Minimal driver script for the Document Cross-Reference pipeline.
 
 Usage (from project root):
@@ -10,10 +8,10 @@ Usage (from project root):
         --document examples/Euro_doc.txt \
         --output   out \
         --max-passes 2 \
-        --api-key  sk-...
+        --api-key  my-api-key
 
     # Option B: export the key once, then omit --api-key
-    set OPENAI_API_KEY=sk-...
+    set OPENAI_API_KEY=my-api-key...
     python examples/run_analysis.py
 """
 
