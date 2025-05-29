@@ -19,3 +19,4 @@ A Python package for:
 - The example file is the text of the EU General Data Protection Regulation — a 200+ page document with complex nested sections.
 - It can be found here:
   https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32016R0679
+- Check out EU_document_toc.md in the examples folder for a visual look at the table of contents the program automatically generated.
