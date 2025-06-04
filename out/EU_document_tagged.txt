@@ -314,7 +314,7 @@ In order to ensure fair and transparent processing in respect of the data subjec
 
 (72)
 
-Profiling is subject to the rules of this Regulation governing the processing of personal data, such as the legal grounds for processing or data protection principles. The[START SECTION h90: Section 3]  European Data Protection Board established by this Regulation (the ‘Board’) should be able to issue guidance in that context.
+Profiling is subject to the rules of this Regulation governing the processing of personal data, such as the legal grounds for processing or data protection principles. The European Data Protection Board established by this Regulation (the ‘Board’) should be able to issue guidance in that context.
 
 (73)
 
@@ -334,7 +334,7 @@ The likelihood and severity of the risk to the rights and freedoms of the data s
 
 (77)
 
-Guidance on the implementation of appropriate measures and on the demonstration of compliance by the controller or the processor, especially as regards the identification of the risk related to the processing, their assessment in terms of origin, nature, likelihood and severity, and the identification of best practices to mitigate the risk, could be provided in particular by means of approved codes of conduct, approved certifications, guidelines provided by the Board or indications provided by a [END SECTION h90: Section 3][START SECTION h50: Section 4]  data protection officer. The Board may also issue guidelines on processing operations that are considered to be unlikely to result in a high risk to the rights and freedoms of natural persons and indicate what measures may be sufficient in such cases to address such risk.
+Guidance on the implementation of appropriate measures and on the demonstration of compliance by the controller or the processor, especially as regards the identification of the risk related to the processing, their assessment in terms of origin, nature, likelihood and severity, and the identification of best practices to mitigate the risk, could be provided in particular by means of approved codes of conduct, approved certifications, guidelines provided by the Board or indications provided by a data protection officer. The Board may also issue guidelines on processing operations that are considered to be unlikely to result in a high risk to the rights and freedoms of natural persons and indicate what measures may be sufficient in such cases to address such risk.
 
 (78)
 
@@ -720,11 +720,11 @@ The European Data Protection Supervisor was consulted in accordance with Article
 
 (173)
 
-This Regulation should apply to all matters concerning the protection of fundamental rights and freedoms vis-à-vis the processing of personal data which are not subject to specific obligations with the same objective set out in Directive 2002/58/EC of the European Parliament and of the Council (18), including the obligations on the controller and the rights of natural persons. In order to clarify the relationship between this Regulation and Directive 2002/58/EC, that Directive should be amended accordingly. Once this Regulation is adopted, Directive 2002/58/EC should be reviewed in parti [END SECTION h1: REGULATION (EU) 2016/679 OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL]cular in order to ensure consistency with this Regulation,
+This Regulation should apply to all matters concerning the protection of fundamental rights and freedoms vis-à-vis the processing of personal data which are not subject to specific obligations with the same objective set out in Directive 2002/58/EC of the European Parliament and of the Council (18), including the obligations on the controller and the rights of natural persons. In order to clarify the relationship between this Regulation and Directive 2002/58/EC, that Directive should be amended accordingly. Once this Regulation is adopted, Directive 2002/58/EC should be reviewed in particular in order to ensure consistency with this Regulation,
 
 HAVE ADOPTED THIS REGULATION:
 
- [END SECTION h50: Section 4][START SECTION h2: CHAPTER I] CHAPTER I
+ [END SECTION h1: REGULATION (EU) 2016/679 OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL][START SECTION h2: CHAPTER I] CHAPTER I
 
 General provisions
 
@@ -1154,11 +1154,11 @@ The controller shall bear the burden of demonstrating the manifestly unfounded o
 
 8.   The Co [END SECTION h80: Section 1]mmission shall be empowered to adopt delegated acts in accordance with Article 92 for the purpose of determining the information to be presented by the icons and the procedures for providing standardised icons.
 
- [END SECTION h17: Article 12][START SECTION h84: Section 2] [START SECTION h20: Section 2]  [END SECTION h20: Section 2]Section 2
+ [END SECTION h17: Article 12][START SECTION h84: Section 2] [START SECTION h73: Section 2]  [END SECTION h73: Section 2][START SECTION h43: Section 2]  [END SECTION h43: Section 2][START SECTION h18: Section 2]  [END SECTION h18: Section 2]Section 2
 
 Information and access to personal data
 
-[START SECTION h18: Article 13] Article 13
+[START SECTION h19: Article 13] Article 13
 
 Information to be provided where personal data are collected from the data subject
 
@@ -1218,7 +1218,7 @@ the existence of automated decision-making, including profiling, referred to in 
 
 4.   Paragraphs 1, 2 and 3 shall not apply where and insofar as the data subject already has the information.
 
- [END SECTION h18: Article 13][START SECTION h19: Article 14] Article 14
+ [END SECTION h19: Article 13][START SECTION h20: Article 14] Article 14
 
 Information to be provided where personal data have not been obtained from the data subject
 
@@ -1312,7 +1312,7 @@ obtaining or disclosure is expressly laid down by Union or Member State law to w
 
 where the personal data must remain confidential subject to an obligation of professional secrecy regulated by Union or Member State law, including a statutory obligation of secrecy.
 
- [END SECTION h19: Article 14][START SECTION h21: Article 15] Article 15
+ [END SECTION h20: Article 14][START SECTION h21: Article 15] Article 15
 
 Right of access by the data subject
 
@@ -1352,11 +1352,11 @@ the existence of automated decision-making, including profiling, referred to in 
 
 2.   Where personal data are transferred to a third country or to an international organisation, the data subject shall have the right to be informed of the appropriate safeguards pursuant to Article 46 relating to the transfer.
 
-3.   The controller shall provide a copy of the personal data undergoing processing. For any further copies requested by the data subject, the controller may charge a reasonable fee based on administrative costs. Where the data subject makes the request by electronic means, and unless otherwise requeste [END SECTION h84: Section 2]d by the data subject, the information shall be provided in a commonly used electronic form.
+3.   The controller shall provide a copy of the personal data undergoing processing. For any further copies requested by the data subject, the controller may charge a reasonable fee ba [END SECTION h84: Section 2]sed on administrative costs. Where the data subject makes the request by electronic means, and unless otherwise requested by the data subject, the information shall be provided in a commonly used electronic form.
 
 4.   The right to obtain a copy referred to in paragraph 3 shall not adversely affect the rights and freedoms of others.
 
- [END SECTION h21: Article 15][START SECTION h22: Section 3] Section 3
+ [END SECTION h21: Article 15][START SECTION h90: Section 3] [START SECTION h22: Section 3]  [END SECTION h22: Section 3]Section 3
 
 Rectification and erasure
 
@@ -1468,11 +1468,11 @@ the processing is carried out by automated means.
 
 2.   In exercising his or her right to data portability pursuant to paragraph 1, the data subject shall have the right to have the personal data transmitted directly from one controller to another, where technically feasible.
 
-3.   The exercise of the right referred to in paragraph 1 of this Article shall be without prejudice to Article 17. That righ [END SECTION h22: Section 3]t shall not apply to processing necessary for the performance of a task carried out in the public interest or in the exercise of official authority vested in the controller.
+3.   The exercise of the right referred to in paragraph 1 of this [END SECTION h90: Section 3] Article shall be without prejudice to Article 17. That right shall not apply to processing necessary for the performance of a task carried out in the public interest or in the exercise of official authority vested in the controller.
 
 4.   The right referred to in paragraph 1 shall not adversely affect the rights and freedoms of others.
 
- [END SECTION h27: Article 20][START SECTION h28: Section 4] Section 4
+ [END SECTION h27: Article 20][START SECTION h50: Section 4] [START SECTION h28: Section 4]  [END SECTION h28: Section 4]Section 4
 
 Right to object and automated individual decision-making
 
@@ -1514,7 +1514,7 @@ is based on the data subject's explicit consent.
 
 3.   In the cases referred to in points (a) and (c) of paragraph 2, the data controller shall implement suitable measures to safeguard the data subject's rights and freedoms and legitimate interests, at least the right to obtain human intervention on the part of the controller, to express his or her point of view and to contest the decision.
 
-4.   Decisions referred to in paragraph 2 shall not be based on special categories of personal data referred to in Article 9(1), unless point (a) or (g) of Article 9(2) applies and suitable measure [END SECTION h28: Section 4]s to safeguard the data subject's rights and freedoms and legitimate interests are in place.
+4.   Decisions referred to in paragraph 2 shall not be based on special categories of personal data referred to in Article 9(1), unless p [END SECTION h50: Section 4]oint (a) or (g) of Article 9(2) applies and suitable measures to safeguard the data subject's rights and freedoms and legitimate interests are in place.
 
  [END SECTION h30: Article 22][START SECTION h31: Section 5] Section 5
 
@@ -1544,11 +1544,11 @@ the prevention, investigation, detection or prosecution of criminal offences or 
 
 (e)
 
-other important objectives of general public interest of the Union or of a Member State, in particular an important economic or financial interest of the Union or of a Member State, including monetary, budgetary and taxation a matters, public health and social security;
+other important objectives of general public interest of the Union or of a Membe [END SECTION h15: CHAPTER III]r State, in particular an important economic or financial interest of the Union or of a Member State, including monetary, budgetary and taxation a matters, public health and social security;
 
 (f)
 
-the protection of judicial independence and [END SECTION h15: CHAPTER III] judicial proceedings;
+the protection of judicial independence and judicial proceedings;
 
 (g)
 
@@ -1788,11 +1788,11 @@ Cooperation with the supervisory authority
 
 The controller and the processor and, where applicable, their representatives, shall cooperate, on request, with the supervisory authority in the performance of its tasks.
 
- [END SECTION h42: Article 31][START SECTION h43: Section 2] Section 2
+Section 2
 
 Security of personal data
 
-[START SECTION h44: Article 32] Article 32
+ [END SECTION h42: Article 31][START SECTION h44: Article 32] Article 32
 
 Security of processing
 
@@ -1872,7 +1872,7 @@ the controller has taken subsequent measures which ensure that the high risk to 
 
 it would involve disproportionate effort. In such a case, there shall instead be a public communication or similar measure whereby the data subjects are informed in an equally effective manner.
 
-4.   If the controller has not already communicated the personal data breach to the data subject, the supervisory authority, having considered the likelihood  [END SECTION h43: Section 2]of the personal data breach resulting in a high risk, may require it to do so or may decide that any of the conditions referred to in paragraph 3 are met.
+4.   If the controller has not already communicated the personal data breach to the data subject, the supervisory authority, having considered the likelihood of the personal data breach resulting in a high risk, may require it to do so or may decide that any of the conditions referred to in paragraph 3 are met.
 
  [END SECTION h46: Article 34][START SECTION h47: Section 3] Section 3
 
@@ -2216,7 +2216,7 @@ demonstrated, to the satisfaction of the competent supervisory authority, that t
 
 5.   The certification bodies referred to in paragraph 1 shall provide the competent supervisory authorities with the reasons for granting or withdrawing the requested certification.
 
-6.   The requirements referred to [END SECTION h33: CHAPTER IV] in paragraph 3 of this Article and the criteria referred to in Article 42(5) shall be made public by the supervisory authority in an easily accessible form. The supervisory authorities shall also transmit those requirements and criteria to the Board. The Board shall collate all certification mechanisms and data protection seals in a register and shall make them publicly available by any appropriate means.
+6.   The requirements referred to in paragraph 3 of this Article and the criteria referred to [END SECTION h33: CHAPTER IV] in Article 42(5) shall be made public by the supervisory authority in an easily accessible form. The supervisory authorities shall also transmit those requirements and criteria to the Board. The Board shall collate all certification mechanisms and data protection seals in a register and shall make them publicly available by any appropriate means.
 
 7.   Without prejudice to Chapter VIII, the competent supervisory authority or the national accreditation body shall revoke an accreditation of a certification body pursuant to paragraph 1 of this Article where the conditions for the accreditation are not, or are no longer, met or where actions taken by a certification body infringe this Regulation.
 
@@ -2564,11 +2564,11 @@ the conditions governing the obligations of the member or members and staff of e
 
 2.   The member or members and the staff of each supervisory authority shall, in accordance with Union or Member State law, be subject to a duty of professional secrecy both during and after their term of office, with regard to any confidential information which has come to their knowledge in the course of the performance of their tasks or exercise of their powers. During their term of office, that duty of professional secrecy shall in particular apply to reporting by natural persons of infringements of this Regulation.
 
- [END SECTION h72: Article 54][START SECTION h73: Section 2] Section 2
+Section 2
 
 Competence, tasks and powers
 
-[START SECTION h74: Article 55] Article 55
+ [END SECTION h72: Article 54][START SECTION h74: Article 55] Article 55
 
 Competence
 
@@ -2812,13 +2812,13 @@ to approve binding corporate rules pursuant to Article 47.
 
 5.   Each Member State shall provide by law that its supervisory authority shall have the power to bring infringements of this Regulation to the attention of the judicial authorities and where appropriate, to commence or engage otherwise in legal proceedings, in order to enforce the provisions of this Regulation.
 
-6.   Each Member State may provide by law that its supervisory authority shall have additional powers to those referred to in paragraphs 1, 2 and 3. The exercise of those powers shall [END SECTION h67: CHAPTER VI] not impair the effective operation of Chapter VII.
+6.   Each Member State may provide by law that its supervisory authority shall have additional powers to those referred to in paragraphs 1, 2 and 3. The exercise of those powers shall not impair the effective opera [END SECTION h67: CHAPTER VI]tion of Chapter VII.
 
  [END SECTION h77: Article 58][START SECTION h78: Article 59] Article 59
 
 Activity reports
 
-Each supervisory authority shall draw up an annual report on its activities, which may include a list of types of infringement notifie [END SECTION h73: Section 2]d and types of measures taken in accordance with Article 58(2). Those reports shall be transmitted to the national parliament, the government and other authorities as designated by Member State law. They shall be made available to the public, to the Commission and to the Board.
+Each supervisory authority shall draw up an annual report on its activities, which may include a list of types of infringement notified and types of measures taken in accordance with Article 58(2). Those reports shall be transmitted to the national parliament, the government and other authorities as designated by Member State law. They shall be made available to the public, to the Commission and to the Board.
 
  [END SECTION h78: Article 59][START SECTION h79: CHAPTER VII] CHAPTER VII
 

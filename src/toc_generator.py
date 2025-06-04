@@ -15,9 +15,8 @@ def escape_markdown(text: str) -> str:
 
 def first_pass_prompt(doc_txt: str) -> str:
     """Generate prompt for first pass TOC extraction."""
-    HEADER_INFO = """Use markdown headers (#, ##, ###, ####, #####, ######) to reflect levels 1-6. After each header line, on the *next* line include a quoted snippet containing the first 8-10 words that follow the header, exactly as they appear in the document. This word sequence will be used to locate the section in the original document."""
+    HEADER_INFO = """Use markdown headers (#, ##, ###, ####, #####, ######) to reflect levels 1-6. After each header line, on the *next* line include a quoted snippet containing the first 12-15 words that follow the header, exactly as they appear in the document. This word sequence will be used to locate the section in the original document."""
     
-    escaped = escape_markdown(doc_txt)
     return f"""
 Extract the top-level headings (level 1) from the document and present them in Markdown.
 
@@ -30,7 +29,7 @@ General provisions
 
 Then output:
 # CHAPTER I  
-"General provisions This Regulation lays down rules relating to the"
+"General provisions This Regulation lays down rules relating to the protection of natural persons"
 
 EXAMPLE: If the document contains:
 Article 5    Principles relating to processing of personal data
@@ -38,22 +37,22 @@ Article 5    Principles relating to processing of personal data
 
 Then output:
 # Article 5  
-"Principles relating to processing of personal data Personal data shall be"
+"Principles relating to processing of personal data Personal data shall be processed lawfully fairly and in"
 
 CRITICAL: Look at every part of the document, from the beginning to the end, to try to find sections.
 CRITICAL: Return entries in the exact document order.
 CRITICAL: Use the exact words as they appear, don't skip or change anything.
+CRITICAL: Do NOT copy the entire document - only extract section headers and their following words.
 
 DOCUMENT:
-{escaped}
+{doc_txt}
 """
 
 
 def next_pass_prompt(pass_number: int, current_toc_md: str, doc_txt: str) -> str:
     """Generate prompt for subsequent passes of TOC extraction."""
-    HEADER_INFO = """Use markdown headers (#, ##, ###, ####, #####, ######) to reflect levels 1-6. After each header line, on the *next* line include a quoted snippet containing the first 8-10 words that follow the header, exactly as they appear in the document. This word sequence will be used to locate the section in the original document."""
+    HEADER_INFO = """Use markdown headers (#, ##, ###, ####, #####, ######) to reflect levels 1-6. After each header line, on the *next* line include a quoted snippet containing the first 12-15 words that follow the header, exactly as they appear in the document. This word sequence will be used to locate the section in the original document."""
     
-    escaped = escape_markdown(doc_txt)
     return f"""
 Expand the current Table of Contents by adding ONE MORE level of sub-headings.
 
@@ -64,20 +63,20 @@ CURRENT TOC (Pass {pass_number-1}):
 
 EXAMPLE: If current TOC is:
 # Chapter 1
-"Introduction This document establishes the rules for the protection of" 
+"Introduction This document establishes the rules for the protection of personal data processing within the European Union" 
 ## Section 1.1
-"Overview This section provides the general framework for the implementation" 
+"Overview This section provides the general framework for the implementation of data protection measures across all member states" 
 
 and Section 1.1 contains "Article 1" and "Article 2", then output:
 
 # Chapter 1
-"Introduction This document establishes the rules for the protection of" 
+"Introduction This document establishes the rules for the protection of personal data processing within the European Union" 
 ## Section 1.1
-"Overview This section provides the general framework for the implementation" 
+"Overview This section provides the general framework for the implementation of data protection measures across all member states" 
 ### Article 1
-"Definitions For the purposes of this regulation the following definitions" 
+"Definitions For the purposes of this regulation the following definitions shall apply to all processing activities undertaken" 
 ### Article 2
-"Scope This article applies to the processing of personal data"
+"Scope This article applies to the processing of personal data wholly or partly by automated means"
 
 If a heading has no sub-headings, keep it unchanged. If *no* new sub-headings exist anywhere, return *exactly* the same Markdown.
 
@@ -87,9 +86,10 @@ CRITICAL:
 3. If no new sub-headings anywhere, return the same TOC as input.
 4. Look at every part of the document, from the beginning to the end, to try to find sections and headings.
 5. Use the exact words as they appear, don't skip or change anything.
+6. Do NOT copy the entire document - only extract section headers and their following words.
 
 DOCUMENT:
-{escaped}
+{doc_txt}
 """
 
 
@@ -100,7 +100,7 @@ def get_next_level_toc(doc_txt: str, current_toc: str, client: OpenAI, pass_numb
     rsp = client.chat.completions.create(
         model="gpt-4.1-mini",
         messages=[
-            {"role": "system", "content": "Return a Markdown TOC using # headers plus snippets as instructed."},
+            {"role": "system", "content": "You are a document analyzer. Create a concise table of contents with markdown headers and word snippets. Do NOT reproduce the entire document text - only extract section headers and their following 12-15 words."},
             {"role": "user", "content": prompt},
         ],
         temperature=0,

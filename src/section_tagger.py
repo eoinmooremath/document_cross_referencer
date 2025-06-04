@@ -68,7 +68,7 @@ def find_word_sequence(raw_text: str, search_words: str, start_pos: int = 0) -> 
     normalized_search = normalize_text_for_word_matching(search_words)
     search_word_list = normalized_search.split()
     
-    if len(search_word_list) < 3:  # Need at least 3 words for reliable matching
+    if len(search_word_list) < 5:  # Need at least 5 words for reliable matching with longer sequences
         return None
     
     # Try exact matching first
