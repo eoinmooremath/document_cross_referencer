@@ -5,14 +5,14 @@ A Python package for:
 1. Generating a hierarchical Table of Contents from large plain-text documents.
 2. Analyzing and extracting cross‑references between sections.
 3. Separating document into chunks based on sections.
-4. **Extracting the smallest/deepest chunks** - automatically identifies and extracts the text of the most granular sections for focused analysis.
+4. **🔆 Extracting the smallest/finest/deepest chunks** - automatically identifies and extracts the text of the most granular sections for focused analysis.
 
 ## Features
 
 - **Iterative TOC Extraction**: Multi-pass, consistency‑driven heading extraction using RAG.
 - **Section Tagging**: Embed markers into raw text for downstream processing using regex.
 - **Reference Analysis**: Identify and organize all in‑text references by section using RAG.
-- **🔆 Smallest Chunks Extraction**: Automatically identifies the deepest sections in the document hierarchy (leaf nodes) and extracts their complete text content into a structured JSON format.
+- **🔆 Deepest Chunks Extraction**: Automatically identifies the deepest (finest, smallest) sections in the document hierarchy (leaf nodes) and extracts their complete text content into a structured JSON format.
   ```
   📄 Document → 🌳 Hierarchy → 🎯 Leaf Sections → 📦 JSON Chunks
   ```
