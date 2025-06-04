@@ -11,7 +11,7 @@ venv/
 .ipynb_checkpoints/
 
 # Output directories
-out/
+
 examples/sample_output/
 
 # IDE settings
