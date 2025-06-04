@@ -34,8 +34,8 @@ def main() -> None:
     )
     parser.add_argument(
         "--document", "-d",
-        default="examples/Euro_doc.txt",
-        help="Path to the input plain-text file (default: examples/Euro_doc.txt)"
+        default="examples/EU_document.txt",
+        help="Path to the input plain-text file (default: examples/EU_document.txt)"
     )
     parser.add_argument(
         "--output", "-o",
@@ -65,7 +65,6 @@ def main() -> None:
         max_passes=args.max_passes
     )
 
-    print(json.dumps(result["all_refs"], indent=2))
 
 
 if __name__ == "__main__":

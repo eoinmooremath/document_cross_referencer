@@ -15,7 +15,7 @@ def escape_markdown(text: str) -> str:
 
 def first_pass_prompt(doc_txt: str) -> str:
     """Generate prompt for first pass TOC extraction."""
-    HEADER_INFO = "Use markdown headers (#, ##, ###, ####, #####, ######) to reflect levels 1-6. After each header line, on the *next* line include a quoted snippet: the first 50 characters of that section … then the last 50 characters, separated by an ellipsis (…).*No other text or keys.* Do not confuse enumerated or unenumerated lists for sections. Do not create a new header for lists or list items."
+    HEADER_INFO = """Use markdown headers (#, ##, ###, ####, #####, ######) to reflect levels 1-6. After each header line, on the *next* line include a quoted snippet containing the first 8-10 words that follow the header, exactly as they appear in the document. This word sequence will be used to locate the section in the original document."""
     
     escaped = escape_markdown(doc_txt)
     return f"""
@@ -23,18 +23,26 @@ Extract the top-level headings (level 1) from the document and present them in M
 
 {HEADER_INFO}
 
-EXAMPLE: If the document contains an Introduction, Conclusion, Chapter 1, and Chapter 2 as the top level sections, then output
-# Introduction  
-"This is the beginn…" … "…end of Introduction"  
-# Chapter 1  
-"This is the beginn…" … "…end of Chapter 1"  
-# Chapter 2  
-"This is the beginn…" … "…end of Chapter 2"  
-# Conclusion  
-"This is the beginn…" … "…end of Conclusion"  
+EXAMPLE: If the document contains:
+CHAPTER I
+General provisions
+(1) This Regulation lays down rules relating to the protection of natural persons...
+
+Then output:
+# CHAPTER I  
+"General provisions This Regulation lays down rules relating to the"
+
+EXAMPLE: If the document contains:
+Article 5    Principles relating to processing of personal data
+1. Personal data shall be processed lawfully, fairly and in a transparent manner...
+
+Then output:
+# Article 5  
+"Principles relating to processing of personal data Personal data shall be"
 
 CRITICAL: Look at every part of the document, from the beginning to the end, to try to find sections.
 CRITICAL: Return entries in the exact document order.
+CRITICAL: Use the exact words as they appear, don't skip or change anything.
 
 DOCUMENT:
 {escaped}
@@ -43,7 +51,7 @@ DOCUMENT:
 
 def next_pass_prompt(pass_number: int, current_toc_md: str, doc_txt: str) -> str:
     """Generate prompt for subsequent passes of TOC extraction."""
-    HEADER_INFO = "Use markdown headers (#, ##, ###, ####, #####, ######) to reflect levels 1-6. After each header line, on the *next* line include a quoted snippet: the first 50 characters of that section … then the last 50 characters, separated by an ellipsis (…).*No other text or keys.* Do not confuse enumerated or unenumerated lists for sections. Do not create a new header for lists or list items."
+    HEADER_INFO = """Use markdown headers (#, ##, ###, ####, #####, ######) to reflect levels 1-6. After each header line, on the *next* line include a quoted snippet containing the first 8-10 words that follow the header, exactly as they appear in the document. This word sequence will be used to locate the section in the original document."""
     
     escaped = escape_markdown(doc_txt)
     return f"""
@@ -56,43 +64,29 @@ CURRENT TOC (Pass {pass_number-1}):
 
 EXAMPLE: If current TOC is:
 # Chapter 1
-"This is the beginn…" … "…end of Chapter 1" 
+"Introduction This document establishes the rules for the protection of" 
 ## Section 1.1
-"This is the beginn…" … "…end of Section 1.1" 
-# Chapter 2
-"This is the beginn…" … "…end of Chapter 2" 
-## Section 2.1 
-"This is the beginn…" … "…end of Section 2.2" 
-## Section 2.2
-"This is the beginn…" … "…end of Section 2.2" 
+"Overview This section provides the general framework for the implementation" 
 
-and Section 1.1 contains "Article 1" and "Article 2", and Section 2.1 contains "Article 3", then output:
+and Section 1.1 contains "Article 1" and "Article 2", then output:
 
 # Chapter 1
-"This is the beginn…" … "…end of Chapter 1" 
+"Introduction This document establishes the rules for the protection of" 
 ## Section 1.1
-"This is the beginn…" … "…end of Section 1.1" 
+"Overview This section provides the general framework for the implementation" 
 ### Article 1
-"This is the beginn…" … "…end of Article 1" 
+"Definitions For the purposes of this regulation the following definitions" 
 ### Article 2
-"This is the beginn…" … "…end of Article 2"
-# Chapter 2
-"This is the beginn…" … "…end of Chapter 2" 
-## Section 2.1 
-"This is the beginn…" … "…end of Section 2.2" 
-### Article 3
-"This is the beginn…" … "…end of Article 3"
-## Section 2.2
-"This is the beginn…" … "…end of Section 2.2" 
-
+"Scope This article applies to the processing of personal data"
 
 If a heading has no sub-headings, keep it unchanged. If *no* new sub-headings exist anywhere, return *exactly* the same Markdown.
 
 CRITICAL:
 1. Maintain exact document order.
-2. Add an extra # to indicate one-level-higheer sub-heading.
+2. Add an extra # to indicate one-level-higher sub-heading.
 3. If no new sub-headings anywhere, return the same TOC as input.
 4. Look at every part of the document, from the beginning to the end, to try to find sections and headings.
+5. Use the exact words as they appear, don't skip or change anything.
 
 DOCUMENT:
 {escaped}

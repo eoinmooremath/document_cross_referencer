@@ -10,8 +10,8 @@ from openai import OpenAI
 
 
 HEADER_RE = re.compile(r'^(#{1,6})\s*(.+?)\s*\{#([^}]+)\}\s*$', re.MULTILINE)
-START_RE = re.compile(r'\[START SECTION ([^\]]+)\]')
-END_RE = re.compile(r'\[END SECTION ([^\]]+)\]')
+START_RE = re.compile(r'\[START SECTION ([^:]+): ([^\]]+)\]')
+END_RE = re.compile(r'\[END SECTION ([^:]+): ([^\]]+)\]')
 
 
 def parse_toc_md(md: str) -> Dict[str, Dict[str, Any]]:
@@ -75,8 +75,8 @@ Important:
 def extract_section_text(section_id: str, tagged_text: str) -> str:
     """Extract clean text for a specific section from the tagged document."""
     # Pattern for [START SECTION h1: ARTICLE I] format
-    start_pattern = f'\\[START SECTION {re.escape(section_id)}:[^\\]]+\\]'
-    end_pattern = f'\\[END SECTION {re.escape(section_id)}\\]'
+    start_pattern = f'\\[START SECTION {re.escape(section_id)}: [^\\]]+\\]'
+    end_pattern = f'\\[END SECTION {re.escape(section_id)}: [^\\]]+\\]'
     
     start_match = re.search(start_pattern, tagged_text, re.IGNORECASE)
     end_match = re.search(end_pattern, tagged_text, re.IGNORECASE)
