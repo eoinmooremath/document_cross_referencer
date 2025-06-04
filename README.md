@@ -67,11 +67,3 @@ The example file is the text of the EU General Data Protection Regulation — a 
 - **`out/EU_document_smallest_chunks.json`**: A JSON object (dictionary) containing the exact text content from each of the deepest sections - maps section IDs to their complete text
 
 **Real Impact**: Instead of manually parsing a 200-page regulation, you get pre-extracted, focused sections that you can immediately search, analyze, or process with other tools.
-
-## Example
-- The example file is the text of the EU General Data Protection Regulation — a 200+ page document with complex nested sections.
-- It can be found here:
-  https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32016R0679
-- Check out ``EU_document_toc.md`` in the examples folder for a visual look at the table of contents the program automatically generated.
-- Check out ``EU_document_tagged.txt`` in the out folder to see in where in the text the program decided the sections exist.  
- 
