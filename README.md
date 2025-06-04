@@ -26,6 +26,8 @@ When we do the LLM calls, for each call we submit the entire document.  Newer Ge
 
 As far as the time goes, it took me about 2 minutes to generate the table of contents in `examples/EU_document_toc.md`, and another 5-6 minutes to process the cross references, for about 8 minutes total. This was using GPT 4.1. You can definitely cut the cross-referencing if you don't need it, and having more sections to cross reference will obviously take more time. 
 
+Gemini models didn't work. Gemini thought that I was copying copywritten material and refused to do cooperate, throwing an error.
+
 
 ## Key Outputs
 
