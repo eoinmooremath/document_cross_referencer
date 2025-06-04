@@ -12,7 +12,10 @@ A Python package for:
 - **Iterative TOC Extraction**: Multi-pass, consistency‑driven heading extraction using RAG.
 - **Section Tagging**: Embed markers into raw text for downstream processing using regex.
 - **Reference Analysis**: Identify and organize all in‑text references by section using RAG.
-- **Smallest Chunks Extraction**: Automatically identifies the deepest sections in the document hierarchy (leaf nodes) and extracts their complete text content into a structured JSON format.
+- **🔆 Smallest Chunks Extraction**: Automatically identifies the deepest sections in the document hierarchy (leaf nodes) and extracts their complete text content into a structured JSON format.
+  ```
+  📄 Document → 🌳 Hierarchy → 🎯 Leaf Sections → 📦 JSON Chunks
+  ```
 
 ## Key Outputs
 
@@ -53,8 +56,8 @@ The example file is the text of the EU General Data Protection Regulation — a 
 **Generated Outputs**:
 - **`examples/EU_document_toc.md`**: Visual table of contents showing the hierarchical structure the program automatically generated
 - **`out/EU_document_tagged.txt`**: Original document with section boundary markers showing where the program identified each section
-- **`out/EU_document_all_refs.json`**: Complete cross-reference analysis - shows which articles reference which other articles, creating a network map of document relationships
-- **`out/EU_document_smallest_chunks.json`**:  **100 individual sections** extracted as the smallest meaningful units - from short definitions (200 chars) to detailed articles (5000+ chars), ready for analysis
+- **`out/EU_document_all_refs.json`**: Complete cross-reference analysis - shows which articles reference which other articles, creating a network map of document relationships - maps section IDs to the complete text of all sections which reference that section
+- **`out/EU_document_smallest_chunks.json`**: A JSON object (dictionary) containing the exact text content from each of the deepest sections - maps section IDs to their complete text
 
 **Real Impact**: Instead of manually parsing a 200-page regulation, you get pre-extracted, focused sections that you can immediately search, analyze, or process with other tools.
 
