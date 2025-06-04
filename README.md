@@ -22,9 +22,9 @@ We use recursive RAG calls to generate a table of contents of the text, one laye
 
 Additionally, to identify cross referenced sections, rather than do that manually, we ask the LLM to it for us, using the updated table of contents. 
 
-When we do the LLM calls, for each call we submit the entire document.  Newer Gemini and OpenAi models have token windows of 1,000,000+ tokens, or about 2500 pages, so the entire document should fit. Usually there are between 5-7 calls to the LLM in total.  If you have 10 calls of a 200 page document context, that is roughly 2000 pages, or 800,000 tokens processed. gpt-4.1-mini costs $0.40 per million tokens currently, so thats $0.32 per analysis. 
+When we do the LLM calls, for each call we submit the entire document.  Newer Gemini and OpenAi models have token windows of 1,000,000+ tokens, or about 2500 pages, so the entire document should fit. Usually there are between 5-7 calls to the LLM in total.  If you have 10 calls of a 200 page document context, that is roughly 2000 pages, or 800,000 tokens processed. gpt-4.1-mini costs $0.40 per million tokens currently, so thats $0.32 of input per analysis (output probably not that much, either.)
 
-As far as the time goes, it took me about 3.5 minutes to process this document using GPT 4.1, and that includes the section cross-referencing, which might be the longest part.
+As far as the time goes, it took me about 2 minutes to generate the table of contents in `examples/EU_document_toc.md`, and another 5-6 minutes to process the cross references, for about 8 minutes total. This was using GPT 4.1. You can definitely cut the cross-referencing if you don't need it, and having more sections to cross reference will obviously take more time. 
 
 
 ## Key Outputs

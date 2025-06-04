@@ -13,12 +13,20 @@ def escape_markdown(text: str) -> str:
     return re.sub(r"([*_~`\\[\\]()>#\-+={}|.!])", r"\\\1", text)
 
 
-def first_pass_prompt(doc_txt: str) -> str:
-    """Generate prompt for first pass TOC extraction."""
-    HEADER_INFO = """Use markdown headers (#, ##, ###, ####, #####, ######) to reflect levels 1-6. After each header line, on the *next* line include a quoted snippet containing the first 12-15 words that follow the header, exactly as they appear in the document. This word sequence will be used to locate the section in the original document."""
+def escape_for_fstring(text: str) -> str:
+    """Escape text safely for f-string inclusion without making it unreadable."""
+    # Replace triple quotes that could break f-strings
+    text = text.replace('"""', '"" "')
+    text = text.replace("'''", "'' '")
+    return text
+
+
+def first_pass_prompt(doc_txt: str) -> tuple[str, str]:
+    """Generate prompt for first pass TOC extraction. Returns (instructions, document)."""
+    HEADER_INFO = """Use markdown headers (#, ##, ###, ####, #####, ######) to reflect levels 1-6. After each header line, on the *next* line include a quoted snippet containing EXACTLY 12-15 words that follow the header, exactly as they appear in the document. This word sequence will be used to locate the section in the original document."""
     
-    return f"""
-Extract the top-level headings (level 1) from the document and present them in Markdown.
+    instructions = f"""
+Extract the top-level headings (level 1) from the following document and present them in Markdown.
 
 {HEADER_INFO}
 
@@ -39,21 +47,23 @@ Then output:
 # Article 5  
 "Principles relating to processing of personal data Personal data shall be processed lawfully fairly and in"
 
-CRITICAL: Look at every part of the document, from the beginning to the end, to try to find sections.
-CRITICAL: Return entries in the exact document order.
-CRITICAL: Use the exact words as they appear, don't skip or change anything.
-CRITICAL: Do NOT copy the entire document - only extract section headers and their following words.
-
-DOCUMENT:
-{doc_txt}
+CRITICAL RULES:
+1. Look for any text that appears to be a structural heading or section title
+2. Each quoted snippet must be EXACTLY 12-15 words, no more, no less
+3. Return entries in the exact document order
+4. Use the exact words as they appear, don't skip or change anything
+5. Do NOT copy large blocks of text - only extract section headers with their brief following text
 """
-
-
-def next_pass_prompt(pass_number: int, current_toc_md: str, doc_txt: str) -> str:
-    """Generate prompt for subsequent passes of TOC extraction."""
-    HEADER_INFO = """Use markdown headers (#, ##, ###, ####, #####, ######) to reflect levels 1-6. After each header line, on the *next* line include a quoted snippet containing the first 12-15 words that follow the header, exactly as they appear in the document. This word sequence will be used to locate the section in the original document."""
     
-    return f"""
+    safe_doc = escape_for_fstring(doc_txt)
+    return instructions, safe_doc
+
+
+def next_pass_prompt(pass_number: int, current_toc_md: str, doc_txt: str) -> tuple[str, str]:
+    """Generate prompt for subsequent passes of TOC extraction. Returns (instructions, document)."""
+    HEADER_INFO = """Use markdown headers (#, ##, ###, ####, #####, ######) to reflect levels 1-6. After each header line, on the *next* line include a quoted snippet containing EXACTLY 12-15 words that follow the header, exactly as they appear in the document. This word sequence will be used to locate the section in the original document."""
+    
+    instructions = f"""
 Expand the current Table of Contents by adding ONE MORE level of sub-headings.
 
 CURRENT TOC (Pass {pass_number-1}):
@@ -80,28 +90,33 @@ and Section 1.1 contains "Article 1" and "Article 2", then output:
 
 If a heading has no sub-headings, keep it unchanged. If *no* new sub-headings exist anywhere, return *exactly* the same Markdown.
 
-CRITICAL:
-1. Maintain exact document order.
-2. Add an extra # to indicate one-level-higher sub-heading.
-3. If no new sub-headings anywhere, return the same TOC as input.
-4. Look at every part of the document, from the beginning to the end, to try to find sections and headings.
-5. Use the exact words as they appear, don't skip or change anything.
-6. Do NOT copy the entire document - only extract section headers and their following words.
-
-DOCUMENT:
-{doc_txt}
+CRITICAL RULES:
+1. Look for any text that appears to be a structural heading or section title
+2. Each quoted snippet must be EXACTLY 12-15 words, no more, no less
+3. Maintain exact document order
+4. Add an extra # to indicate one-level-higher sub-heading
+5. If no new sub-headings anywhere, return the same TOC as input
+6. Use the exact words as they appear, don't skip or change anything
+7. Do NOT copy large blocks of text - only extract section headers with their brief following text
 """
+    
+    safe_doc = escape_for_fstring(doc_txt)
+    return instructions, safe_doc
 
 
 def get_next_level_toc(doc_txt: str, current_toc: str, client: OpenAI, pass_number: int) -> Optional[str]:
     """Get the next level of TOC using OpenAI."""
-    prompt = first_pass_prompt(doc_txt) if pass_number == 1 else next_pass_prompt(pass_number, current_toc, doc_txt)
+    if pass_number == 1:
+        instructions, document = first_pass_prompt(doc_txt)
+    else:
+        instructions, document = next_pass_prompt(pass_number, current_toc, doc_txt)
 
     rsp = client.chat.completions.create(
         model="gpt-4.1-mini",
         messages=[
-            {"role": "system", "content": "You are a document analyzer. Create a concise table of contents with markdown headers and word snippets. Do NOT reproduce the entire document text - only extract section headers and their following 12-15 words."},
-            {"role": "user", "content": prompt},
+            {"role": "system", "content": "You are a document analyzer. Create a concise table of contents with markdown headers and EXACTLY 12-15 word snippets. Do NOT reproduce large blocks of text. Extract any structural headings or section titles you identify in the document."},
+            {"role": "user", "content": instructions},
+            {"role": "user", "content": document},
         ],
         temperature=0,
         max_tokens=32768,

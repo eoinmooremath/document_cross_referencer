@@ -394,6 +394,46 @@ def tag_sections(markdown_text: str, raw_text: str) -> str:
             'end': end_pos
         })
     
+    # Add auto-introduction and auto-conclusion sections
+    if tagged_positions:
+        # Sort by start position to find first and last sections
+        tagged_positions.sort(key=lambda x: x['start'])
+        
+        first_section_start = tagged_positions[0]['start']
+        last_section_end = tagged_positions[-1]['end']
+        
+        # Add auto-introduction if there's content before the first section
+        intro_text = raw_text[:first_section_start].strip()
+        if intro_text:
+            tagged_positions.insert(0, {
+                'id': 'auto-introduction',
+                'title': 'Introduction',
+                'level': 1,
+                'start': 0,
+                'end': first_section_start
+            })
+        
+        # Add auto-conclusion if there's content after the last section
+        conclusion_text = raw_text[last_section_end:].strip()
+        if conclusion_text:
+            tagged_positions.append({
+                'id': 'auto-conclusion',
+                'title': 'Conclusion',
+                'level': 1,
+                'start': last_section_end,
+                'end': len(raw_text)
+            })
+    else:
+        # If no sections were found, treat the entire document as introduction
+        if raw_text.strip():
+            tagged_positions = [{
+                'id': 'auto-introduction',
+                'title': 'Introduction',
+                'level': 1,
+                'start': 0,
+                'end': len(raw_text)
+            }]
+    
     # Sort positions by start position (in reverse for insertion)
     tagged_positions.sort(key=lambda x: x['start'], reverse=True)
     
