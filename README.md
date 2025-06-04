@@ -17,6 +17,16 @@ A Python package for:
   📄 Document → 🌳 Hierarchy → 🎯 Leaf Sections → 📦 JSON Chunks
   ```
 
+## Concept
+We use recursive RAG calls to generate a table of contents of the text, one layer at a time.  With this rich piece of information, we can, with some regex effort, extract all the sections we want from the text. 
+
+Additionally, to identify cross referenced sections, rather than do that manually, we ask the LLM to it for us, using the updated table of contents. 
+
+When we do the LLM calls, for each call we submit the entire document.  Newer Gemini and OpenAi models have token windows of 1,000,000+ tokens, or about 2500 pages, so the entire document should fit. Usually there are between 5-7 calls to the LLM in total.  If you have 10 calls of a 200 page document context, that is roughly 2000 pages, or 800,000 tokens processed. gpt-4.1-mini costs $0.40 per million tokens currently, so thats $0.32 per analysis. 
+
+As far as the time goes, it took me about 3.5 minutes to process this document using GPT 4.1, and that includes the section cross-referencing, which might be the longest part.
+
+
 ## Key Outputs
 
 The system generates several valuable outputs for document analysis:
@@ -44,9 +54,6 @@ Chapter I → Article 2 ✓ (smallest chunk - no sub-paragraphs)
 Chapter II → Article 3 → Paragraph (a) ✓ (smallest chunk)
 ```
 
-## Concept
-- We use recursive RAG calls to generate a table of contents of the text, one layer at a time.  With this rich piece of information, we can, with some effort, extract all the sections we want from the text. To do the recursive RAG calls, for each call we submit the entire document to the LLM.  Newer Gemini and OpenAi models have token windows of 1,000,000+ tokens, or about 2500 pages, so the entire document should fit. Usually there are between 5-7 calls to the LLM in total.  If you have 10 calls of a 200 page document context, that is roughly 2000 pages, or 800,000 tokens processed. gpt-4.1-mini costs $0.40 per million tokens currently.
-
 ## Example Results
 
 The example file is the text of the EU General Data Protection Regulation — a 200+ page document with complex nested sections.
@@ -60,11 +67,3 @@ The example file is the text of the EU General Data Protection Regulation — a 
 - **`out/EU_document_smallest_chunks.json`**: A JSON object (dictionary) containing the exact text content from each of the deepest sections - maps section IDs to their complete text
 
 **Real Impact**: Instead of manually parsing a 200-page regulation, you get pre-extracted, focused sections that you can immediately search, analyze, or process with other tools.
-
-## Example
-- The example file is the text of the EU General Data Protection Regulation — a 200+ page document with complex nested sections.
-- It can be found here:
-  https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32016R0679
-- Check out ``EU_document_toc.md`` in the examples folder for a visual look at the table of contents the program automatically generated.
-- Check out ``EU_document_tagged.txt`` in the out folder to see in where in the text the program decided the sections exist.  
- 
