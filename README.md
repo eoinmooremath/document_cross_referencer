@@ -1,4 +1,4 @@
-# Document Cross-Referencer
+# Document Cross-Referencer and Chunker
 
 A Python package for:
 
